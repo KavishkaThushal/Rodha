@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import {FaSearch,FaBars} from 'react-icons/fa'
+
 import { motion } from 'framer-motion'
 function Navbar() {
     const [show, handleShow] = useState(false)

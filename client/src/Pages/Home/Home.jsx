@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import Hero from '../../components/Hero/Hero'
 import VanImg from '../../assets/images/wogsevagon.jpeg'
+import I8Img from '../../assets/images/i8.jpeg'
+import Trust from '../../assets/images/trust.png'
+import Quality from '../../assets/images/quality.png'
+import Finance from '../../assets/images/fianance.png'
 import {motion} from 'framer-motion'
 function Home() {
   const [selectedBrand, setSelectedBrand] = useState('');
@@ -100,7 +104,60 @@ function Home() {
 
     </motion.div>
     </div>
+
+    <div className='flex flex-col w-full h-[40vh] mt-20  items-center gap-3  '>
+        <div className='flex  flex-col w-[80%] mx-auto gap-6 '>
+         <div className='flex flex-col items-center gap-2 '>
+            <h1 className='flex text-xl sm:text-4xl font-bold mt-1 text-right '>Why Us</h1>
+            <span className=' flex h-1 bg-blue-500 w-14 rounded-sm'/>
+         </div>
+         <p className='flex text-justify sm:text-center text-sm sm:text-base font-medium text-slate-400'>
+           RODHA is the largest automobile marketplace in Sri Lanka.<br/>
+           Buy and Sell vehicles in Sri Lanka's best online vehicle platform which has the largest collection of vehicles for sale.
+Sri Lanka, Our little country is going through a tough time and we at Rodha wants to contribute by doing the least, keeping our platform free.
+We also partner up with leading finance institutes to bring our users the best leasing offers available in Sri Lanka.
+We have been connecting potential buyers with sellers since 2009 and we continue to have the best interests of our users at heart.
+Post your free ad today and sell fast!
+         </p>
+         </div>
+    </div>
+
+     <div className='flex w-full h-[27vh] sm:h-[50vh] bg-blue-500 p-10 sm:py-10 my-10 justify-center items-center'>
+      <div className='flex flex-row w-full sm:w-[60%] mx-auto justify-between'>
+
+        <div className='flex flex-col gap-1 sm:gap-3 w-[13vh] sm:w-[25vh] items-center'>
+          <img src={Trust} alt="Quality" className=' w-full sm:w-[60%] ' />
+          <div className='flex flex-col gap-2'>
+          <span className='text-center font-semibold text-xs sm:text-lg text-white'>Trusted Customers</span>
+          <p className='text-[52%] sm:text-xs text-center font-medium text-slate-400'>Become one of our trusted customers today and experience seamless vehicle buying and servicing with our dedicated team.</p>
+          </div>
+          
+        </div>
+
+        <div className='flex flex-col gap-1 sm:gap-3 w-[13vh] sm:w-[25vh] items-center'>
+          <img src={Quality} alt="Quality" className='w-full sm:w-[60%] ' />
+          <div className='flex flex-col gap-2'>
+          <span className='text-center font-semibold text-xs sm:text-lg text-white'>Quality Services</span>
+          <p className='text-[52%] sm:text-xs text-center font-medium text-slate-400'>Experience excellence with our quality service. From vehicle inspections to maintenance, our skilled team ensures your car receives top-notch care.</p>
+          </div>
+          
+        </div>
+
+        <div className='flex flex-col gap-1 sm:gap-3 w-[13vh] sm:w-[25vh] items-center'>
+          <img src={Finance} alt="Quality" className=' w-full sm:w-[60%] ' />
+          <div className='flex flex-col gap-2'>
+          <span className='text-center font-semibold text-xs sm:text-lg text-white'>Finance Options</span>
+          <p className=' text-[52%] sm:text-xs text-center font-medium text-slate-400'>Unlock flexible financing solutions tailored to your needs. Our dedicated finance team ensures a seamless and stress-free process.</p>
+          </div>
+          
+        </div>
+      </div>
+     </div>
     </>
+
+
+
+
   )
 }
 

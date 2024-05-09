@@ -1,0 +1,31 @@
+.trapezoid {
+    width: 200px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    background-color: blue; /* Adjust color as needed */
+    border-top-left-radius: 2rem; /* Sets the border radius for all corners */
+    border-top-right-radius: 2rem; /* Sets the border radius for all corners */
+    position: relative;
+    
+    
+  }
+
+  .trapezoid::before,
+.trapezoid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: inherit; /* Inherit the background color from the parent */
+  border-radius: inherit; /* Inherit the border radius from the parent */
+}
+
+.trapezoid::before {
+  left: 0;
+  transform: perspective(500px) rotateY(45deg);
+}
+
+.trapezoid::after {
+  right: 0;
+  transform: perspective(500px) rotateY(-45deg);
+}

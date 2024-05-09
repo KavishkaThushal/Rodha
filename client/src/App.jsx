@@ -7,6 +7,7 @@ import SignUp from './Pages/SignUp/SignUp'
 import About from './Pages/About/About'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/about" element={<About/>} />
      </Routes>
+     <Footer/>
     </BrowserRouter>
   )
 }
