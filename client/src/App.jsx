@@ -5,10 +5,14 @@ import Profile from './Pages/Profile/Profile'
 import SignIn from './Pages/SignIn/SignIn'
 import SignUp from './Pages/SignUp/SignUp'
 import About from './Pages/About/About'
+import Navbar from './components/Navbar/Navbar'
+import Hero from './components/Hero/Hero'
 
 function App() {
   return (
     <BrowserRouter>
+    <Navbar/>
+    <Hero/>
      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/profile" element={<Profile/>} />
