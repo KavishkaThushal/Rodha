@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
     <Navbar/>
-    <Hero/>
+    
      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/profile" element={<Profile/>} />

@@ -3,10 +3,43 @@ import HeroImg from '../../assets/images/bmw.png'
 import CountUp from 'react-countup'
 import { motion } from 'framer-motion'
 
+{/* <motion.span
+        animate={{ opacity: 1, y: 0, rotate: 0 }}
+        initial={{ opacity: 0, y: -10, rotate: -10 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          delay: index * .1,
+          duration: .1,
+          ease: "easeIn"
+        }}
+      ></motion.span> */}
+
 function Hero() {
+
+  // const renderTextAnimation = (text) => {
+  //   return text.split('').map((char, index) => {
+  //     return (
+  //       <motion.span
+  //         key={char + "-" + index}
+  //         animate={{ opacity: 1, y: 0, rotate: 0 }}
+  //         initial={{ opacity: 0, y: -10, rotate: -10 }}
+  //         exit={{ opacity: 0 }}
+  //         transition={{
+  //           delay: index * .1,
+  //           duration: 1,
+  //           ease: "easeIn"
+  //         }}
+  //       >
+  //         {char}
+  //       </motion.span>
+  //     )
+  //   })
+  // }
+
   return (
     <div className='flex h-[50vh]  sm:h-[80vh] w-[40vh]  mx-auto sm:mx-0 ' >
         <div className='flex  flex-col my-10 items-center    sm:my-auto   sm:mx-10 gap-5' >
+           
            <motion.h1 initial={{y: "2rem",opacity:0}}
                 animate={{y:0,opacity:1}}
                 transition={{
