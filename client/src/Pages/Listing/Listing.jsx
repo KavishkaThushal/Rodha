@@ -4,7 +4,16 @@ import Card from '../../components/Card/Card'
 function Listing() {
   return (
     <>
-    <div className='flex my-10 mx-10'>
+    <div className='grid grid-cols-3 gap-4 my-10 mx-10'>
+    <Card/>
+    <Card/>
+    <Card/>
+    <Card/>
+    <Card/>
+    <Card/>
+    <Card/>
+    <Card/>
+    <Card/>
     <Card/>
     </div>
     

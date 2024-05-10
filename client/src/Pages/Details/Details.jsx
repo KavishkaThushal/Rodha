@@ -2,6 +2,7 @@ import React from 'react'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import {motion} from 'framer-motion'
 import BMW1 from '../../assets/images/bmw1.jpeg'
 import BMW2 from '../../assets/images/bmw2.jpeg'
 import BMW3 from '../../assets/images/bmw3.jpeg'
@@ -45,7 +46,14 @@ function Details() {
                 </Swiper> 
            
         </div>
-        <div className='flex flex-col sm:w-[60%] w-full  py-10 bg-blue-200 mb-10 rounded-md max-h-[80vh] sm:max-h-[300vh]'>
+        <motion.div 
+        initial={{y: "2rem",opacity:0}}
+        animate={{y:0,opacity:1}}
+        transition={{
+          duration:2,
+          type:"spring"
+        }}
+        className='flex flex-col sm:w-[60%] w-full  py-10 bg-blue-200 mb-10 rounded-md max-h-[80vh] sm:max-h-[300vh]'>
             <div className='text-center text-xl sm:text-2xl font-semibold mb-5'>BMW GTR r54</div>
             <div className='flex flex-col gap-4 sm:w-[80%] p-5 sm:p-0 mx-auto'>
             <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
@@ -116,7 +124,7 @@ function Details() {
                     <span className='sm:w-[80vh] w-[30vh] text-justify font-normal'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, consequatur. Nulla ea illum, eum harum corporis laboriosam culpa facere voluptatum, excepturi deserunt assumenda dicta a!</span>
                 </span>
             </div>
-        </div>
+        </motion.div>
     </div>
   )
 }
