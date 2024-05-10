@@ -33,7 +33,7 @@ function Details() {
     }
 
   return (
-    <div className='flex w-full gap-8 flex-col items-center justify-center h-[150vh] '>
+    <div className='flex w-full gap-8 my-8 flex-col items-center sm:justify-center justify-start sm:max-h-[150vh] max-h-[100vh]  '>
         <div className='flex w-full p-5 sm:p-0 sm:w-[40%]'>
         <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
                 <SliderButtons/>
@@ -45,9 +45,9 @@ function Details() {
                 </Swiper> 
            
         </div>
-        <div className='flex flex-col w-[60%] py-10 bg-blue-200 rounded-md'>
-            <div className='text-center text-2xl font-semibold mb-5'>BMW GTR r54</div>
-            <div className='flex flex-col gap-4 w-[80%] mx-auto'>
+        <div className='flex flex-col sm:w-[60%] w-full  py-10 bg-blue-200 mb-10 rounded-md max-h-[80vh] sm:max-h-[300vh]'>
+            <div className='text-center text-xl sm:text-2xl font-semibold mb-5'>BMW GTR r54</div>
+            <div className='flex flex-col gap-4 sm:w-[80%] p-5 sm:p-0 mx-auto'>
             <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Contact</span>
                     <span>:</span>
@@ -113,7 +113,7 @@ function Details() {
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Details</span>
                     <span>:</span>
-                    <span className='w-[80vh] text-justify font-normal'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, consequatur. Nulla ea illum, eum harum corporis laboriosam culpa facere voluptatum, excepturi deserunt assumenda dicta a!</span>
+                    <span className='sm:w-[80vh] w-[30vh] text-justify font-normal'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, consequatur. Nulla ea illum, eum harum corporis laboriosam culpa facere voluptatum, excepturi deserunt assumenda dicta a!</span>
                 </span>
             </div>
         </div>
