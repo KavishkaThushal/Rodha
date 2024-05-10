@@ -34,7 +34,7 @@ function SignIn() {
               <img src={google} alt="google" className='w-5 h-5'/>
               Continue with Google</button>
             </div>
-            
+            <span className='flex text-xs gap-1'>All ready have an account?<button className='flex text-xs font-semibold text-blue-500'>Sign in</button></span>
           </form>
       </div>
       <div className=' hidden sm:visible sm:flex flex-1 bg-slate-400 rounded-md'>
