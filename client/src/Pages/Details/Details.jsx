@@ -34,12 +34,12 @@ function Details() {
 
   return (
     <div className='flex w-full gap-8 flex-col items-center justify-center h-[150vh] '>
-        <div className='flex w-[40%]'>
+        <div className='flex w-full p-5 sm:p-0 sm:w-[40%]'>
         <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
                 <SliderButtons/>
                     {data.map((card, i) => {
                        return(<SwiperSlide key={i}>
-                        <img key={i} src={card} alt='car' className=' flex justify-center items-center rounded-md w-[80vh] h-[50vh] object-cover' />
+                        <img key={i} src={card} alt='car' className=' flex justify-center items-center rounded-md w-[60vh] sm:w-[80vh] sm:h-[50vh] object-cover' />
                      </SwiperSlide>) 
 })}                  
                 </Swiper> 
@@ -125,7 +125,7 @@ function Details() {
 const SliderButtons = () => {
     const swiper = useSwiper();
     return (
-        <div className=" flex flex-row justify-end absolute gap-1 bottom-5 right-10 z-50">
+        <div className=" flex flex-row justify-end absolute gap-1 bottom-5 sm:right-10 right-5 z-50">
             <button onClick={()=>swiper.slidePrev()} className='flex justify-center items-center text-sm font-semibold text-blue-500 bg-transparent border-2 border-blue-500 h-8 sm:h-[5vh] w-8 sm:w-[5vh]  rounded-md' style={{
         backdropFilter: 'blur(8px)', 
         backgroundColor: 'rgba(255, 255, 255, 0.5)', 
