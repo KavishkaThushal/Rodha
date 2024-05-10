@@ -4,7 +4,7 @@ import {FaFacebook, FaTwitter, FaGooglePlus } from 'react-icons/fa';
 
 function Footer() {
   return (
-    <div className='flex  w-full justify-between items-center mt-32 h-[25vh] sm:h-[40vh] border-t-2 border-blue-500 border-spacing-5'>
+    <div className='flex  w-full justify-between items-center  h-[25vh] sm:h-[40vh] border-t-2 border-blue-500 border-spacing-5'>
         <div className='flex flex-row w-full justify-between items-start p-5 '>
         <div className='flex flex-col gap-3 sm:w-[50vh] '>
            <h1 className='flex text-xl sm:text-6xl font-bold text-left text-blue-500'>RODHA</h1>
