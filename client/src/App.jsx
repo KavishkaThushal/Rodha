@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Footer from './components/Footer/Footer'
 import Create from './Pages/Create/Create'
+import Listing from './Pages/Listing/Listing'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/create" element={<Create/>} />
+        <Route path="/list" element={<Listing/>} />
      </Routes>
      <Footer/>
     </BrowserRouter>
