@@ -10,6 +10,7 @@ import Hero from './components/Hero/Hero'
 import Footer from './components/Footer/Footer'
 import Create from './Pages/Create/Create'
 import Listing from './Pages/Listing/Listing'
+import Details from './Pages/Details/Details'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/create" element={<Create/>} />
         <Route path="/list" element={<Listing/>} />
+        <Route path="/details" element={<Details/>} />
      </Routes>
      <Footer/>
     </BrowserRouter>
