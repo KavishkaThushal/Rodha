@@ -2,7 +2,7 @@ import React from 'react'
 import Dodge from '../../assets/images/carblack.jpg'
 function Card() {
   return (
-    <div className=" flex flex-row  rounded-md overflow-hidden  shadow-lg bg-blue-200 ">
+    <div className=" flex flex-row p-1 rounded-md overflow-hidden  shadow-lg bg-blue-200 ">
         <div className='flex '>
         <img className="w-[14vh] h-[14vh] sm:w-[30vh] sm:h-[30vh] rounded-md" src={Dodge} alt="Sunset in the mountains"/>
         </div>
