@@ -122,10 +122,10 @@ Post your free ad today and sell fast!
          </div>
     </div>
 
-     <div className='flex w-full h-[27vh] sm:h-[50vh] bg-blue-500 p-10 sm:py-10 my-10 justify-center items-center'>
-      <div className='flex flex-row w-full sm:w-[60%] mx-auto justify-between'>
+     <div className='flex w-full h-[30vh] sm:h-[50vh] bg-blue-500 p-5 sm:p-10 sm:py-10 my-10 justify-center items-center'>
+      <div className='flex flex-row w-full sm:w-[60%] p-5 sm:p-0 mx-auto justify-between'>
 
-        <div className='flex flex-col gap-1 sm:gap-3 w-[13vh] sm:w-[25vh] items-center'>
+        <div className='flex flex-col gap-1 sm:gap-3 w-[8vh] sm:w-[25vh] items-center'>
           <img src={Trust} alt="Quality" className=' w-full sm:w-[60%] ' />
           <div className='flex flex-col gap-2'>
           <span className='text-center font-semibold text-xs sm:text-lg text-white'>Trusted Customers</span>
@@ -134,7 +134,7 @@ Post your free ad today and sell fast!
           
         </div>
 
-        <div className='flex flex-col gap-1 sm:gap-3 w-[13vh] sm:w-[25vh] items-center'>
+        <div className='flex flex-col gap-1 sm:gap-3 w-[8vh] sm:w-[25vh] items-center'>
           <img src={Quality} alt="Quality" className='w-full sm:w-[60%] ' />
           <div className='flex flex-col gap-2'>
           <span className='text-center font-semibold text-xs sm:text-lg text-white'>Quality Services</span>
@@ -143,7 +143,7 @@ Post your free ad today and sell fast!
           
         </div>
 
-        <div className='flex flex-col gap-1 sm:gap-3 w-[13vh] sm:w-[25vh] items-center'>
+        <div className='flex flex-col gap-1 sm:gap-3 w-[8vh] sm:w-[25vh] items-center'>
           <img src={Finance} alt="Quality" className=' w-full sm:w-[60%] ' />
           <div className='flex flex-col gap-2'>
           <span className='text-center font-semibold text-xs sm:text-lg text-white'>Finance Options</span>
