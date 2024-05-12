@@ -11,9 +11,12 @@ import Footer from './components/Footer/Footer'
 import Create from './Pages/Create/Create'
 import Listing from './Pages/Listing/Listing'
 import Details from './Pages/Details/Details'
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
+    <>
     <BrowserRouter>
     <Navbar/>
     
@@ -29,6 +32,8 @@ function App() {
      </Routes>
      <Footer/>
     </BrowserRouter>
+    <ToastContainer/> 
+    </>
   )
 }
 

@@ -19,9 +19,12 @@ export const Signup = async(req, res) => {
         res.status(201).json({message:'User Created Successfully',success:true,data:data});
            
     } catch (error) {
-        console.log(error);
-        res.status(500).json({message:'Internal Server Error',success:false});
-    }
+      
+      if (error.code === 11000) {
+          return res.status(500).json({ message: 'Email already exists', success: false });
+      }
+      res.status(500).json({ message: 'Internal Server Error', success: false });
+  }
 
 }
 

@@ -3,8 +3,12 @@ import BB from '../../assets/images/bb.png'
 import Road2D from '../../assets/images/otherroad.jpeg'
 import google from '../../assets/images/google.png'
 import {motion} from 'framer-motion' 
-
+import {useNavigate,Link} from 'react-router-dom'
 function SignIn() {
+      //  const [name, setName] = useState('')
+      //  const [email, setEmail] = useState('')
+      //  const [password, setPassword] = useState('')
+       const navigate = useNavigate()
   return (
     <div className='flex w-full justify-center items-center mb-20 sm:mb-0 h-[55vh] sm:h-[100vh] bg-blue-500' style={{ backgroundImage: `url(${Road2D})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className='flex  flex-row w-[80%] sm:w-[60%] h-[50vh] sm:h-[70vh] bg-white rounded-lg'>
@@ -31,8 +35,9 @@ function SignIn() {
               <img src={google} alt="google" className='w-5 h-5'/>
               Continue with Google</button>
             </div>
-            <span className='flex text-xs gap-1'>Don't have an account<button className='flex text-xs font-semibold text-blue-500'>Sign up</button></span>
+            
           </form>
+          <span className='flex text-xs  justify-center gap-1'>Don't have an account<Link to='/signup' className='flex text-xs font-semibold text-blue-500'>Sign up</Link></span>
           
       </div>
       <div className=' hidden sm:visible sm:flex flex-1 bg-slate-400 rounded-md'>
