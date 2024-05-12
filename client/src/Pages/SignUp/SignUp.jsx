@@ -33,7 +33,7 @@ function SignUp() {
               toast.error(error, { position: "bottom-right" });
               
             }else{
-               dispatch(signInSuccess("Register successfully"))
+               dispatch(signInSuccess(response.data.data))
                toast.success("Register successfully", { position: "bottom-right" });
                navigate('/')
             }

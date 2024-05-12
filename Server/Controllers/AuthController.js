@@ -32,6 +32,7 @@ export const Signup = async(req, res) => {
 export const Signin=async (req,res)=>{
     try {
       const {email,password}=req.body
+      
       const validUser=await User.findOne({email})
       if(!validUser)return res.send({success:false,message:"User not found."})
   
@@ -44,6 +45,7 @@ export const Signin=async (req,res)=>{
       
       
     } catch (error) {
+      console.log(error)
       return res.send({success:false,message:"Server Error."})
     }
   }

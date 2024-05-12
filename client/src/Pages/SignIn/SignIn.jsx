@@ -1,14 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BB from '../../assets/images/bb.png'
 import Road2D from '../../assets/images/otherroad.jpeg'
 import google from '../../assets/images/google.png'
 import {motion} from 'framer-motion' 
-import {useNavigate,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { signInStart,signInSuccess,signInFail } from '../../Redux/Reducer/UserReducer'
+import {useDispatch,useSelector} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 function SignIn() {
-      //  const [name, setName] = useState('')
-      //  const [email, setEmail] = useState('')
-      //  const [password, setPassword] = useState('')
-       const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch=useDispatch()
+  const {loading,error}=useSelector(state=>state.user)
+  const navigate = useNavigate()
+
+       const handleSubmit = async (e) => {
+        e.preventDefault()
+            try {
+              dispatch(signInStart())
+               const response= await axios.post("http://localhost:8000/api/auth/signin", {
+                
+                email,
+                password
+                   
+               })
+               
+               if(response.data.success ===false){
+                  dispatch(signInFail(response.data.message))
+                  toast.error(error, { position: "bottom-right" });
+                  
+                }else{
+                   dispatch(signInSuccess(response.data.data))
+                   toast.success("Register successfully", { position: "bottom-right" });
+                   navigate('/')
+                }
+    
+            } catch (e) {
+             console.log(e)
+              dispatch(signInFail(e.response.data.message))
+              toast.error(error, { position: "bottom-right" });
+            }
+    
+      }    
   return (
     <div className='flex w-full justify-center items-center mb-20 sm:mb-0 h-[55vh] sm:h-[100vh] bg-blue-500' style={{ backgroundImage: `url(${Road2D})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className='flex  flex-row w-[80%] sm:w-[60%] h-[50vh] sm:h-[70vh] bg-white rounded-lg'>
@@ -23,14 +58,14 @@ function SignIn() {
             
             <div  className='flex flex-col gap-1'>
               <label for="email" className='font-medium text-xs'>Email</label>
-              <input type="email" id="email" name="email" placeholder="Enter your email" required className='flex px-2 py-1 rounded-md text-xs h-8 w-[30vh] sm:w-[35vh] border-2 border-blue-200 focus:outline-none hover:scale-105 transition-all'/>
+              <input type="email" id="email" name="email" placeholder="Enter your email" onChange={(e)=>(setEmail(e.target.value))} required className='flex px-2 py-1 rounded-md text-xs h-8 w-[30vh] sm:w-[35vh] border-2 border-blue-200 focus:outline-none hover:scale-105 transition-all'/>
             </div>
             <div  className='flex flex-col gap-1'>
               <label for="password" className='font-medium text-xs'>Password</label>
-              <input type="password" id="password" name="password" placeholder="Enter your password" required className='flex px-2 py-1 rounded-md text-xs h-8 w-[30vh] sm:w-[35vh] border-2 border-blue-200 focus:outline-none hover:scale-105 transition-all'/>
+              <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(e)=>(setPassword(e.target.value))} required className='flex px-2 py-1 rounded-md text-xs h-8 w-[30vh] sm:w-[35vh] border-2 border-blue-200 focus:outline-none hover:scale-105 transition-all'/>
             </div>
             <div className='flex flex-col gap-3 mt-5'>
-            <button type="submit" className='flex px-2 py-2 justify-center items-center font-semibold text-white bg-blue-500 rounded-md text-sm w-[30vh] sm:w-[35vh] focus:outline-none hover:bg-blue-700'>Sign in</button>
+            <button type="submit" className='flex px-2 py-2 justify-center items-center font-semibold text-white bg-blue-500 rounded-md text-sm w-[30vh] sm:w-[35vh] focus:outline-none hover:bg-blue-700' onClick={handleSubmit}>{loading? "Loading":"Sign in"}</button>
             <button type="submit" className='flex px-2 flex-row gap-2 py-2 justify-center items-center font-semibold text-black border-2 border-blue-500  rounded-md text-sm [30vh] sm:w-[35vh] focus:outline-none hover:bg-blue-200'>
               <img src={google} alt="google" className='w-5 h-5'/>
               Continue with Google</button>
