@@ -39,12 +39,45 @@ export const Signin=async (req,res)=>{
       const validPassword=bcrypt.compareSync(password,validUser.password)
       if(!validPassword)return res.send({success:false,message:"Incorrect Password."})
       if(validUser && validPassword){
+        const {password:secret,...data} = validUser._doc;
         const token = jwt.sign({ userId: validUser._id}, process.env.SECRETKEY);
-        return res.cookie('access_token',token,{httpOnly:true}).status(200).send({token,data:validUser,success:true,message:"signin successfull."})
+        return res.cookie('access_token',token,{httpOnly:true}).status(200).send({token,data:data,success:true,message:"signin successfull."})
       }
       
       
     } catch (error) {
+      console.log(error)
+      return res.send({success:false,message:"Server Error."})
+    }
+  }
+
+export const GoogleAuth=async (req,res)=>{
+    try {
+      const {name,email,photo}=req.body
+      
+      const validUser=await User.findOne({email})
+       
+      if(validUser){
+        const {password:secret,...data} = validUser._doc;
+        const token = jwt.sign({ userId: validUser._id}, process.env.SECRETKEY);
+        return res.cookie('access_token',token,{httpOnly:true}).status(200).send({token,data:data,success:true,message:"signin successfull."})
+        }else{
+          const password=Math.random().toString(36).slice(-8);
+          const hashedPassword =  bcrypt.hashSync(password, 10);
+          const user= new User({
+              UserName:name,
+              email,
+              password:hashedPassword,
+              photo
+          });
+          await user.save();
+
+          const {password:secret,...data} = user._doc;
+          const token = jwt.sign({ userId: user._id}, process.env.SECRETKEY);
+          return res.cookie('access_token',token,{httpOnly:true}).status(200).send({token,data:data,success:true,message:"signin successfull."})
+          
+        }
+       }catch (error) {
       console.log(error)
       return res.send({success:false,message:"Server Error."})
     }

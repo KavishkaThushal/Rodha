@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { signInStart,signInSuccess,signInFail } from '../../Redux/Reducer/UserReducer'
 import {useDispatch,useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Oauth from '../../components/Oauth/Oauth'
 function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -71,9 +72,7 @@ function SignUp() {
             </div>
             <div className='flex flex-col gap-3 mt-5'>
             <button type="submit" className='flex px-2 py-2 justify-center items-center font-semibold text-white bg-blue-500 rounded-md text-sm w-[30vh] sm:w-[35vh] focus:outline-none hover:bg-blue-700' onClick={handleSubmit}>{loading? "Loading":"Sign up"}</button>
-            <button type="submit" className='flex px-2 flex-row gap-2 py-2 justify-center items-center font-semibold text-black border-2 border-blue-500  rounded-md text-sm [30vh] sm:w-[35vh] focus:outline-none hover:bg-blue-200'>
-              <img src={google} alt="google" className='w-5 h-5'/>
-              Continue with Google</button>
+            <Oauth/>  
             </div>
             <span className='flex text-xs gap-1'>All ready have an account?<button className='flex text-xs font-semibold text-blue-500'>Sign in</button></span>
           </div>
