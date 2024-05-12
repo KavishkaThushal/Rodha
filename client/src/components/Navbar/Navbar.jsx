@@ -1,16 +1,17 @@
 import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import {FaSearch,FaBars} from 'react-icons/fa'
-
+ import {useSelector} from 'react-redux'
 import { motion } from 'framer-motion'
 function Navbar() {
     const [show, handleShow] = useState(false)
-   
+    const {user}=useSelector(state=>state.user)
+    
     const handleToggle = () => {
         handleShow(!show)
     }
     
-   
+    
     
   return (
     < >
@@ -49,11 +50,19 @@ function Navbar() {
                 <input type='text' placeholder='Search' className=' bg-transparent focus:outline-none px-1 font-medium w-full sm:w-64 '/>
                 <FaSearch className='text-blue-500'/>
             </form>
-            <div className='hidden sm:visible sm:flex sm:gap-4'>
+            <div className='hidden sm:visible sm:flex   sm:items-center sm:gap-4'>
             <Link to='/' className=' font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Home</Link>
                 <Link to='/about' className='font-semibold text-base sm:text-lg text-black hover:text-blue-500'>About</Link> 
                 
-                <Link to='/signin' className='font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Sign in</Link>  
+                {user? 
+                    <Link to='/profile'  className='flex justify-center items-center'>
+                    <img src={user.photo} className=' rounded-full h-10 w-10 object-cover' alt='profile image'/> 
+                    </Link> 
+                    :   <Link to='/signin' className='font-semibold text-base sm:text-lg text-black hover:text-blue-500'>
+                        Sign in
+                        </Link>  }
+                    
+                     
             </div>
              
             
