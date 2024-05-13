@@ -15,8 +15,9 @@ export const Signup = async(req, res) => {
         await user.save();
         
         const {password:secret,...data} = user._doc;
-        
-        res.status(201).json({message:'User Created Successfully',success:true,data:data});
+        const token = jwt.sign({ userId: user._id}, process.env.SECRETKEY);
+        return res.cookie('access_token',token,{httpOnly:true}).status(201).send({token,data:data,success:true,message:"User Created Successfully"})
+      
            
     } catch (error) {
       
@@ -50,6 +51,8 @@ export const Signin=async (req,res)=>{
       return res.send({success:false,message:"Server Error."})
     }
   }
+
+
 
 export const GoogleAuth=async (req,res)=>{
     try {

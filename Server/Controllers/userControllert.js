@@ -1,7 +1,7 @@
 import User from "../Model/UserModel.js"
 
 export const updateUser=async(req,res)=>{
-   
+    
     if(req.user.userId !== req.params.id)return res.status(403).json({message:"You can update only your account."})
   
         try {
@@ -11,10 +11,10 @@ export const updateUser=async(req,res)=>{
         
             const updatedUser=await User.findByIdAndUpdate(req.params.id,{
                 $set:{
-                    UserName:req.body.name,
-                    email:req.body.email,
-                    password:req.body.password,
-                    photo:req.body.photo
+                    UserName:req.body.formData.name,
+                    email:req.body.formData.email,
+                    password:req.body.formData.password,
+                    photo:req.body.formData.photo
                 }
             
             },{new:true})
@@ -27,4 +27,15 @@ export const updateUser=async(req,res)=>{
             return res.status(500).json({message:"Internal Server Error."})
         }
    
+}
+
+export const deleteAccount=async(req,res)=>{
+    if(req.user.userId !== req.params.id)return res.status(403).json({message:"You can update only your account."})
+
+        try {
+            const deleteUser=await User.findByIdAndDelete(req.params.id)
+            res.status(200).json({message:"Account deleted successfully.",success:true})
+        } catch (error) {
+            return res.status(500).json({message:"Internal Server Error."})
+        }
 }
