@@ -13,3 +13,26 @@ export const listController=async(req,res)=>{
         return res.status(500).json({message:"Internal Server Error."})
     }
 }
+
+export const showListController=async(req,res)=>{
+    if(req.user.userId !== req.params.id)return res.status(403).json({message:"Please sign in or sign up",success:false
+    ,})
+    try {
+        const list=await List.find({UserRef:req.params.id})
+        return res.status(200).json({message:"List fetched successfully.",success:true,data:list})
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Internal Server Error."})
+    }
+}
+export const removeListController=async(req,res)=>{
+     try {
+        const removeList=await List.findByIdAndDelete(req.params.id)
+        
+        return res.status(200).json({message:"List removed successfully.",success:true,data:removeList})
+     } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Internal Server Error."})
+     }
+}

@@ -14,6 +14,8 @@ function Profile() {
   const {user}=useSelector(state=>state.user)
   const [filePrecentage,setFilePrecentage]=useState(0)
   const [fileUploadError,setFileUploadError]=useState(false)
+  const [ showList, setShowList]=useState(false)
+  const [listData,setListData]=useState('')
   const navigate=useNavigate()
   const [avatar,setAvatar]=useState('')
   // const [name,setName]=useState('')
@@ -35,6 +37,7 @@ function Profile() {
     const fileName= new Date().getTime()+file.name
     const storageRef=ref(storage,fileName)
     const uploadTask=uploadBytesResumable(storageRef,file)
+    
 
     uploadTask.on('state_changed',(snapshot)=>{
       const progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
@@ -134,9 +137,45 @@ function Profile() {
     setFormData({...formData,[e.target.id]:e.target.value})
   }
 
+
+  const handleShowList=async()=>{
+    try {
+      const response= await axios.post(`http://localhost:8000/api/list/showlist/${user._id}`,{
+      },{
+        withCredentials: true,
+        headers: {
+          Authorization: ` ${token}`, // Include token in headers
+        },
+      })
+      
+      if(response.data.success ===true){
+        setShowList(!showList)
+        setListData(response.data.data)
+     
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleDeleteList= (index)=>{
+    listData.filter(async(list,i)=>{
+            if(i===index){
+              console.log(list)
+              const response=await axios.post(`http://localhost:8000/api/list/deletelist/${list._id}`)
+              if(response.data.success ===true){
+                setListData(listData.filter((_,i)=>i!==index))
+                toast.success("List deleted successfully", { position: "bottom-right" });
+              }
+            } 
+    })
+   
+ 
+  }
   return (
-    <div className='flex w-full justify-center items-center mb-20 sm:mb-0 h-[55vh] sm:h-[120vh] ' >
-      <div className='flex flex-col p-5  w-[70%] sm:w-[30%] h-[50vh] sm:h-[110vh] gap-4 sm:gap-10  justify-center rounded-md  bg-blue-200' >
+    <div className='flex w-full justify-center items-center sm:mt-10 sm:items-start mb-20 sm:mb-0 h-[55vh] sm:h-[150vh] ' >
+      <div className='flex flex-col p-5  w-[70%] sm:w-[30%]  gap-4 sm:gap-10  justify-center rounded-md  bg-blue-200' >
         <div className='flex flex-col items-center '>
           
         <h1 className='font-medium text-lg sm:text-2xl text-white'>Profile</h1>
@@ -180,10 +219,33 @@ function Profile() {
               <button className='flex font-semibold text-sm text-red-800' type='button' onClick={handleDeleteAccount} >Delete account</button>
               <button  className='flex font-semibold text-sm text-red-800' type='button' onClick={handleSignOut}>Sign out</button>
             </div>
-            <span className='text-center font-semibold text-green-800'>show listing</span>
+            <button type='button' className='text-center font-semibold text-green-800' onClick={handleShowList}>show listing</button>
           </form>
           
         </div>
+        {
+            showList && listData && listData.length>0 && listData.map((list,index)=>{
+              return(
+                <div key={index} className='flex flex-row justify-between items-center   w-full p-2 border-2 border-white '>
+                  <span className='flex flex-row  gap-2'>
+                  <span>
+                    <img src={list.imageUrls[0]} alt='list image' className='w-10 h-10 ' />
+                  </span>
+                  <span className='felx flex-col gap-1'>
+                  <h1 className='font-semibold text-sm'>{list.Brand}</h1>
+                  
+                  <p className='font-normal text-xs '>Rs.{list.Price}</p>
+                  </span>
+                  </span>
+                  <span>
+                    <button className='text-sm text-red-700  hover:opacity-70' onClick={()=>(handleDeleteList(index))}>DELETE</button>
+                  </span>
+                  
+                  
+                </div>
+              )
+            })
+           }
       </div>
 
     </div>
