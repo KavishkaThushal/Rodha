@@ -2,16 +2,34 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import React, { useState } from 'react'
 import { app } from '../../firebase/firebase'
 import { toast } from 'react-toastify'
+import { Brands, Districts } from '../../assets/utils/data'
+import axios from 'axios'
+import {useSelector} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function Create() {
     const [file,setFile]=useState(null)
+    const {user}=useSelector(state=>state.user)
     const [filePrecentage,setFilePrecentage]=useState(0)
+    const navigate=useNavigate()
     const [fileUpload,setFileUpload]=useState(false)
     const [formData,setFormData]=useState({
-        imageUrls:[]
+        imageUrls:[],
+        Brand:'',
+        Model:'',
+        Year:'',
+        Price:'',
+        FuelType:'',
+        Gear:'',
+        Millage:'',
+        District:'',
+        Description:'',
+        Contact:'',
+        Features:''
+
     })
-    console.log(filePrecentage)
     console.log(formData)
+    
     const handleFileSubmit=(e)=>{
          if(file.length>0 && file.length + formData.imageUrls.length <7){
             setFileUpload(true)
@@ -66,6 +84,33 @@ function Create() {
         })
      }
 
+     const handleSubmitData=(e)=>{
+       setFormData({
+            ...formData,
+            [e.target.id]:e.target.value
+       })
+     }     
+    
+     const handleSubmit=async()=>{
+        try {
+            const response=await axios.post(`http://localhost:8000/api/list/create/${user._id}`,
+            {...formData,UserRef:user._id},
+            {
+               headers:{
+                Authorization:localStorage.getItem('access_token')
+               }
+            })
+            if(response.data.success=== false){
+                toast.error('Error creating List', { position: "bottom-right" });
+            }else{
+                navigate('/')
+                toast.success('List created successfully', { position: "bottom-right" });
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('Error creating List', { position: "bottom-right" });
+        }
+     } 
 
   return (
     <div className='flex w-full items-start sm:items-center justify-start sm:justify-center h-[103vh] sm:h-[150vh]'>
@@ -76,54 +121,49 @@ function Create() {
 
                 <span className='flex flex-row w-full items-center justify-between'>
                 <span className='flex flex-col gap-1'>
-                 <label  className='font-medium text-xs'>Model</label>
-                <select id="dropdown"  className='flex text-center  py-2 rounded-md h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
-                <option value="" disabled hidden className='px-10 font-bold'>Model</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                </select>
+                <label  className='font-medium text-xs'>Model</label>
+                <input type='text' id='Model' onChange={handleSubmitData} placeholder='Model' className='flex w-32 h-10 sm:w-40 p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
                 </span>
                  
                  <span className='flex flex-col gap-1'>
                  <label  className='font-medium text-xs'>Brand</label>
-                <select id="dropdown"  className='flex text-center  py-2 rounded-md h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
-                <option value="" disabled hidden className='px-10 font-bold'>Brand</option>
-                <option value="option1">Nissan</option>
-                <option value="option2">Toyota</option>
-                <option value="option3">Kie</option>
+                <select id="Brand" onChange={handleSubmitData} className='flex text-center  py-2 rounded-md h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <option value=""  className='px-10 font-bold'>Brand</option>
+                {
+                    Brands.map((brand,index)=>(<option key={index}  value={brand}>{brand}</option>))
+                }
                 </select>
                 </span>
                 </span>
                 
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Details</label>
-                <textarea placeholder='Description' className='flex w-full h-32 rounded-md sm:w-full sm:h-48 p-2  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <textarea placeholder='Description' onChange={handleSubmitData} id='Description' className='flex w-full h-32 rounded-md sm:w-full sm:h-48 p-2  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
                 </textarea>
                 </span>
                 
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Features</label>
-                <input type='text' placeholder='Features' className='flex w-64 rounded-md h-12 sm:w-full p-2  focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
+                <input type='text' placeholder='Features' onChange={handleSubmitData} id='Features' className='flex w-64 rounded-md h-12 sm:w-full p-2  focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
                 </span>
 
                 <span className='flex flex-row w-full items-center justify-between'>
                 <span className='flex flex-col gap-1'>
                  <label  className='font-medium text-xs'>Gear</label>    
-                <select id="dropdown"  className='flex text-center rounded-md py-2  h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
-                <option value="" disabled hidden className='px-10 font-bold'>Gear</option>
-                <option value="option1">Automatic</option>
-                <option value="option2">Manual</option>
+                <select id="Gear"  onChange={handleSubmitData} className='flex text-center rounded-md py-2  h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <option value=""  className='px-10 font-bold'>Gear</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
                 </select>
                 </span>
 
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Fuel Type</label>
-                <select id="dropdown"  className='flex text-center rounded-md py-2  h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
-                <option value="" disabled hidden className='px-10 font-bold'>Fuel Type</option>
-                <option value="option1">Electric</option>
-                <option value="option2">Petrol</option>
-                <option value="option2">Disel</option>
+                <select id="FuelType" onChange={handleSubmitData} className='flex text-center rounded-md py-2  h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <option value=""  className='px-10 font-bold'>Fuel Type</option>
+                <option value="Electric">Electric</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Disel">Disel</option>
                 </select>
                 </span>
                 </span>
@@ -132,23 +172,25 @@ function Create() {
                 
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Milleage</label>
-                <input type='text' placeholder='Milleage' className='flex rounded-md w-64 h-12 sm:w-full p-2  focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
+                <input type='number' onChange={handleSubmitData} id='Millage' placeholder='Milleage' className='flex rounded-md w-64 h-12 sm:w-full p-2  focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
                 </span>
                 </span>
 
                 <span className='flex flex-row w-full items-center justify-between'>
                 <span className='flex flex-col gap-1'>
                  <label  className='font-medium text-xs'>District</label>    
-                <select id="dropdown"  className='flex text-center  py-2 rounded-md h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
-                <option value="" disabled hidden className='px-10 font-bold'>Gear</option>
-                <option value="option1">Automatic</option>
-                <option value="option2">Manual</option>
+                <select id="District" onChange={handleSubmitData} className='flex text-center  py-2 rounded-md h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all' >
+                <option value=""   className='px-10 font-bold'>District</option>
+                {
+                    Districts.map((district,index)=>(<option key={index}  value={district}>{district}</option>))
+                }
+                
                 </select>
                 </span>
 
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Year</label>
-                <input type='text' placeholder='Fuel Type' className='flex w-32 h-10 sm:w-40 p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
+                <input type='number' id='Year' onChange={handleSubmitData} placeholder='Year' className='flex w-32 h-10 sm:w-40 p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
                 </span>
                 </span>
 
@@ -158,12 +200,12 @@ function Create() {
                 <span className='flex flex-col gap-2 '>
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Contact</label>
-                <input type='text' placeholder='Contact' className='flex w-64 h-12 sm:w-full p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
+                <input type='text' id='Contact' onChange={handleSubmitData} placeholder='Contact' className='flex w-64 h-12 sm:w-full p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
                 </span>
                 
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Price</label>
-                <input type='text' placeholder='Price' className='flex w-64 h-12 sm:w-full p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
+                <input type='number' id='Price'  onChange={handleSubmitData} placeholder='Price' className='flex w-64 h-12 sm:w-full p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
                 </span>
                 </span>
                  
@@ -177,7 +219,7 @@ function Create() {
                         <button type='button' onClick={handleFileSubmit} className='flex px-2 py-2 justify-center items-center font-semibold rounded-md text-white bg-blue-500  text-sm  w-[20vh] sm:w-[20vh] focus:outline-none hover:bg-blue-700'>{fileUpload? "Uploading...":"Upload"}
 </button>
                     </div>
-                         <div className='flex flex-col  h-[80vh] '>
+                         <div className='flex flex-col   '>
                            {
                             formData.imageUrls.length>0 && formData.imageUrls.map((url,index)=>{
                                 return(
@@ -191,7 +233,7 @@ function Create() {
                         }
                          </div>
                         
-                    
+                      <button type='button' className='flex w-full items-center justify-center h-10 hover:bg-blue-700 transition-all font-semibold bg-blue-500 rounded-md text-white' onClick={handleSubmit}>Create List</button>
                 </div>
             </div>
         </div>

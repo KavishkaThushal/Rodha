@@ -4,6 +4,6 @@ import { VerifyToken } from '../utils/Verify.js'
 
 const router=express.Router()
 
-router.post('/create',VerifyToken,listController)
+router.post('/create/:id',VerifyToken,listController)
 
 export {router as listControll}

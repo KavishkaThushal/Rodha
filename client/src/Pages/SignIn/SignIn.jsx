@@ -41,7 +41,7 @@ function SignIn() {
     
             } catch (e) {
              console.log(e)
-              dispatch(signInFail(e.response.data.message))
+              dispatch(signInFail(e.message))
               toast.error(error, { position: "bottom-right" });
             }
     

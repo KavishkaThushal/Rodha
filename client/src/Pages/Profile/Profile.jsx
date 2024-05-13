@@ -175,10 +175,10 @@ function Profile() {
             <input type="password" id="password" onChange={handleChange} placeholder='password' className='flex px-2 py-1 rounded-md text-xs h-8 w-[22vh] sm:w-full border-2 border-blue-200 focus:outline-none hover:scale-105 transition-all'/>
             </div>
             <button className='flex px-2 py-2 justify-center items-center font-semibold text-white bg-blue-500 rounded-md text-sm w-[22vh] sm:w-full focus:outline-none hover:bg-blue-700' onClick={handleSubmit}>{loading? "Loading":"Update"}</button>
-            <button className='flex px-2 py-2 justify-center items-center font-semibold text-white bg-blue-500 rounded-md text-sm w-[22vh] sm:w-full focus:outline-none hover:bg-blue-700'>Create Listing</button>
+            <button className='flex px-2 py-2 justify-center items-center font-semibold text-white bg-blue-500 rounded-md text-sm w-[22vh] sm:w-full focus:outline-none hover:bg-blue-700' onClick={()=>(navigate('/create'))} >Create Listing</button>
             <div className='flex flex-row justify-between w-full'>
               <button className='flex font-semibold text-sm text-red-800' type='button' onClick={handleDeleteAccount} >Delete account</button>
-              <button className='flex font-semibold text-sm text-red-800' type='button' onClick={handleSignOut}>Sign out</button>
+              <button  className='flex font-semibold text-sm text-red-800' type='button' onClick={handleSignOut}>Sign out</button>
             </div>
             <span className='text-center font-semibold text-green-800'>show listing</span>
           </form>

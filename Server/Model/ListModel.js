@@ -10,7 +10,7 @@ const ListSchema = new mongoose.Schema({
         required: true
     },
     Year:{
-        type: Number,
+        type: String,
         required: true
     },
     Price:{
@@ -26,7 +26,7 @@ const ListSchema = new mongoose.Schema({
         required: true
     },
     Millage:{
-        type: Number,
+        type: String,
         required: true
     },
     District:{
@@ -37,16 +37,16 @@ const ListSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Image:{
+    imageUrls:{
         type: Array,
         required: true
     },
     UserRef:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     Contact:{
-        type: Number,
+        type: String,
         required: true
     },
     Features:{
