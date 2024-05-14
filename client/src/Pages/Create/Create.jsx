@@ -25,7 +25,9 @@ function Create() {
         District:'',
         Description:'',
         Contact:'',
-        Features:''
+        Features:'',
+        Condition:'',
+        Type:''
 
     })
     console.log(formData)
@@ -113,8 +115,8 @@ function Create() {
      } 
 
   return (
-    <div className='flex w-full items-start sm:items-center justify-start sm:justify-center h-[103vh] sm:h-[150vh]'>
-        <div className='flex flex-col  items-center sm:justify-center  gap-10 w-full sm:w-[70%] h-[80vh] sm:h-[140vh] bg-blue-200 rounded-md '>
+    <div className='flex w-full items-start sm:items-center justify-start sm:justify-center h-[103vh] sm:h-[180vh]'>
+        <div className='flex flex-col  items-center sm:justify-center  gap-10 w-full sm:w-[70%] h-[80vh] sm:h-[160vh] bg-blue-200 rounded-md '>
             <h1 className='flex text-xl sm:text-3xl mt-6 sm:mt-0 font-medium'>Create your own list</h1>
             <div className='flex flex-col sm:flex-row  gap-4 sm:gap-5 w-full sm:w-[140vh] p-5 bg-blue-200 rounded-md'>
                 <div className='flex flex-1 flex-col gap-2'>
@@ -150,7 +152,7 @@ function Create() {
                 <span className='flex flex-row w-full items-center justify-between'>
                 <span className='flex flex-col gap-1'>
                  <label  className='font-medium text-xs'>Gear</label>    
-                <select id="Gear"  onChange={handleSubmitData} className='flex text-center rounded-md py-2  h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <select id="Gear"  onChange={handleSubmitData} className='flex text-center rounded-md py-2   h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
                 <option value=""  className='px-10 font-bold'>Gear</option>
                 <option value="Automatic">Automatic</option>
                 <option value="Manual">Manual</option>
@@ -191,6 +193,34 @@ function Create() {
                 <span className='flex flex-col gap-1'>
                 <label  className='font-medium text-xs'>Year</label>
                 <input type='number' id='Year' onChange={handleSubmitData} placeholder='Year' className='flex w-32 h-10 sm:w-40 p-2 rounded-md focus:outline-none text-blue-500 hover:scale-105 transition-all'/>
+                </span>
+                </span>
+
+                <span className='flex flex-row w-full items-center justify-between'>
+                <span className='flex flex-col gap-1'>
+                 <label  className='font-medium text-xs'>Type</label>    
+                <select id="Type"  onChange={handleSubmitData} className='flex text-center rounded-md py-2   h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <option value=""  className='px-10 font-bold'>Type</option>
+                <option value="Van">Van</option>
+                <option value="Motorcycle">Motorcycle</option>
+                <option value="ThreeWheeler">ThreeWheeler</option>
+                <option value="Car">Car</option>
+                <option value="Lorry">Lorry</option>
+                <option value="Bus">Bus</option>
+                <option value="SUV">SUV</option>
+                <option value="Heavy Duty">Heavy Duty</option>
+                <option value="Double Cab">Double Cab</option>
+                </select>
+                </span>
+
+                <span className='flex flex-col gap-1'>
+                <label  className='font-medium text-xs'>Condition</label>
+                <select id="Condition" onChange={handleSubmitData} className='flex text-center rounded-md py-2  h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
+                <option value=""  className='px-10 font-bold'>Condition</option>
+                <option value="Brand New">Brand New</option>
+                <option value="Used">Used</option>
+               
+                </select>
                 </span>
                 </span>
 

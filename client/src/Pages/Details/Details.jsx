@@ -17,7 +17,7 @@ function Details() {
  
     const id = pathname.split("/").slice(-1)[0];
     const [data,setData]=useState(null)
-    console.log(data)
+    
 
     useEffect(()=>{
          const fetchData=async()=>{
@@ -55,7 +55,7 @@ function Details() {
     }
 
   return (
-    <div className='flex w-full gap-8 my-8 flex-col items-center sm:justify-center justify-start sm:max-h-[150vh] max-h-[100vh]  '>
+    <div className='flex w-full gap-8 my-12 flex-col items-center sm:justify-center justify-start sm:max-h-[150vh] max-h-[100vh]  '>
         <div className='flex w-full p-5 sm:p-0 sm:w-[40%]'>
         <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
                 <SliderButtons/>

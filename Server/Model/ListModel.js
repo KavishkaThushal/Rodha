@@ -53,6 +53,15 @@ const ListSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    Type:{
+        type: String,
+        required: true
+    },
+    Condition:{
+        type: String,
+        required: true
+    },
+
 
 
 },{timestamps: true});

@@ -174,7 +174,7 @@ function Profile() {
  
   }
   return (
-    <div className='flex w-full justify-center items-center sm:mt-10 sm:items-start mb-20 sm:mb-0 h-[55vh] sm:h-[150vh] ' >
+    <div className='flex w-full justify-center items-center sm:mt-10 sm:items-start mb-20 sm:mb-10 ' >
       <div className='flex flex-col p-5  w-[70%] sm:w-[30%]  gap-4 sm:gap-10  justify-center rounded-md  bg-blue-200' >
         <div className='flex flex-col items-center '>
           

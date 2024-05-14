@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card/Card'
 import axios from 'axios'
-
+import video from '../../assets/hero.mp4'
 function Vehicles() {
     const [data,setData]=useState("")
    useEffect(()=>{
@@ -21,20 +21,19 @@ function Vehicles() {
    
   return (
     <>
-    <div className='flex flex-row w-full '>
-      <span className='flex flexcol w-[30%] bg-slate-400'>
-
-      </span>
-      <div className='flex bg-red-600 w-full'>
-      <div className='grid grid-cols-2 gap-4 m-5 ' >
+    <div className='flex flex-col w-full  items-center '>
+      <div className='flex w-full h-[40vh] bg-slate-500'>
+      <video className= " w-full h-full object-cover opacity-40" src={video} muted autoPlay loop type="video/mp4"/>
+      <h1 className='absolute top-40 right-[54vh] z-50 text-4xl font-semibold'>SRI LANKAN BIGGEST VEHICLE MARKET</h1>
+      </div>
+    
+    <div className='grid grid-cols-3 gap-4 my-10 mx-10  '>
       {
         data && data.map((card,i)=>(<Card key={i} data={card}/>))
       }
     
     
     </div>
-      </div>
-      
     </div>
     
     
