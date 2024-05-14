@@ -3,15 +3,25 @@ import { Link } from 'react-router-dom'
 import {FaSearch,FaBars} from 'react-icons/fa'
  import {useSelector} from 'react-redux'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 function Navbar() {
     const [show, handleShow] = useState(false)
     const {user}=useSelector(state=>state.user)
-    
+    const [submitData,setSubmitData]=useState('')
+    const navigate=useNavigate()
     const handleToggle = () => {
         handleShow(!show)
     }
     
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+            const urlParams=new URLSearchParams()
+            urlParams.set('Brand',submitData)
+           
+            const searchQuery=urlParams.toString()
     
+            navigate(`/search?${searchQuery}`)
+      }
     
   return (
     < >
@@ -32,9 +42,9 @@ function Navbar() {
               }}
             className='flex  z-50 justify-center  sm:gap-6 absolute min-h-[18vh] w-32 p-2 pb-6 shadow-xl right-5 top-16 bg-slate-300 rounded-sm ' >
                 <span className='flex gap-3 my-auto flex-col items-center  '>
-                <form className='bg-slate-300 p-1 rounded-lg flex items-center'>
+                <form onSubmit={handleSubmit}  className='bg-slate-300 p-1 rounded-lg flex items-center'>
                 <input type='text' placeholder='Search' className=' bg-transparent focus:outline-none px-1 font-medium w-full sm:w-64 '/>
-                <FaSearch className='text-blue-500'/>
+                <button  type='submit'><FaSearch className='text-blue-500'/></button>
             </form>
                 
                 <Link to='/' className=' font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Home</Link>
@@ -46,9 +56,9 @@ function Navbar() {
                 </span>
                 
             </motion.div>}
-            <form className=' hidden sm:visible sm:bg-slate-300 sm:p-2 sm:rounded-lg sm:flex sm:items-center '>
-                <input type='text' placeholder='Search' className=' bg-transparent focus:outline-none px-1 font-medium w-full sm:w-64 '/>
-                <FaSearch className='text-blue-500'/>
+            <form onSubmit={handleSubmit} className=' hidden sm:visible border-2 border-blue-500 sm:p-2 sm:rounded-lg sm:flex sm:items-center '>
+                <input type='text' onChange={(e)=>(setSubmitData(e.target.value))} placeholder='Search' className=' bg-transparent focus:outline-none px-1 text-sm font-medium  w-full sm:w-64 '/>
+                <button  type='submit'><FaSearch className='text-blue-500  hover:text-blue-700'/></button>
             </form>
             <div className='hidden sm:visible sm:flex   sm:items-center sm:gap-4'>
             <Link to='/' className=' font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Home</Link>
@@ -68,7 +78,7 @@ function Navbar() {
              
             
         </div>
-        <div className='w-full h-[.01rem] bg-slate-400'></div>
+        <div className='w-full h-[.01rem] bg-blue-500'></div>
     </>
   )
 }

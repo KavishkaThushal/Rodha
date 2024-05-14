@@ -22,7 +22,7 @@ function SearchResult() {
          fetchURL()
      },[])
    
-    console.log(searchData);
+    
 
    useEffect(()=>{
       const fetchData=async()=>{
@@ -38,7 +38,7 @@ function SearchResult() {
       fetchData()
 
    },[])
-   console.log(data);
+   
   return (
     <>
     <div className='flex flex-col w-full  items-center '>
@@ -49,8 +49,9 @@ function SearchResult() {
     
     <div className='grid grid-cols-3 gap-4 my-10 mx-10  '>
       {
-       searchData && data && data.filter((item)=>(item.Brand.toLowerCase().includes(searchData.brand?.toLowerCase()) && 
-       ( item.Model.toLowerCase().includes(searchData.model?.toLowerCase()) && item.Type.toLowerCase().includes(searchData.type?.toLowerCase())  && item.District.toLowerCase().includes(searchData.city?.toLowerCase()) && item.Condition.toLowerCase().includes(searchData.condition?.toLowerCase())))).map((card,i)=>(<Card key={i} data={card}/>))
+        searchData.model===null && searchData.type===null? (data && data.filter((item)=>(item.Brand.toLowerCase().includes(searchData.brand?.toLowerCase()))).map((card,i)=>(<Card key={i} data={card}/>))) :
+       (searchData && data && data.filter((item)=>(item.Brand.toLowerCase().includes(searchData.brand?.toLowerCase()) && 
+       ( item.Model.toLowerCase().includes(searchData.model?.toLowerCase()) && item.Type.toLowerCase().includes(searchData.type?.toLowerCase())  && item.District.toLowerCase().includes(searchData.city?.toLowerCase()) && item.Condition.toLowerCase().includes(searchData.condition?.toLowerCase())))).map((card,i)=>(<Card key={i} data={card}/>)))
       }
     
     

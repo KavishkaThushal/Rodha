@@ -17,9 +17,9 @@ function Card({data}) {
                 }}
 
     onClick={()=>(navigate(`/vehicles/${data._id}`))}            
-    className=" flex hover:cursor-pointer flex-row p-1 sm:p-3 rounded-md overflow-hidden sm:gap-4 sm:w-[60vh] sm:h-[25vh] shadow-xl  bg-slate-200 ">
+    className=" flex hover:cursor-pointer flex-row p-1 sm:p-3 rounded-md overflow-hidden sm:gap-4 sm:w-[60vh] sm:h-[25vh] shadow-2xl  bg-blue-100  ">
         <div className='flex sm:justify-center sm:items-center'>
-        <img className="  w-[14vh] h-[14vh] sm:w-[20vh] sm:h-[20vh]  rounded-md" src={data.imageUrls} alt="Sunset in the mountains"/>
+        <img className="  w-[14vh] h-[14vh] sm:w-[25vh] sm:h-[20vh]  rounded-md" src={data.imageUrls} alt="Sunset in the mountains"/>
         </div>
         <div className=" flex justify-center  items-center px-2 py-2">
             <div className=" flex flex-col  sm:gap-1 text-sm mb-2 w-full ">
