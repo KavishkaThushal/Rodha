@@ -4,6 +4,8 @@ import axios from 'axios'
 import video from '../../assets/hero.mp4'
 function Vehicles() {
     const [data,setData]=useState("")
+    
+
    useEffect(()=>{
       const fetchData=async()=>{
         try {
@@ -18,7 +20,7 @@ function Vehicles() {
       fetchData()
 
    },[])
-   
+   console.log(data);
   return (
     <>
     <div className='flex flex-col w-full  items-center '>
@@ -29,6 +31,7 @@ function Vehicles() {
     
     <div className='grid grid-cols-3 gap-4 my-10 mx-10  '>
       {
+       
         data && data.map((card,i)=>(<Card key={i} data={card}/>))
       }
     

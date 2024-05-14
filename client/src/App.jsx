@@ -14,6 +14,7 @@ import Details from './Pages/Details/Details'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Vehicles from './Pages/Vehicles/Vehicles'
+import SearchResult from './Pages/SearchResult/SearchResult'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/vehicles" element={<Vehicles/>} />
         <Route path="/vehicles/:id" element={<Details/>} />
+        <Route path="/search" element={<SearchResult/>} />
         <Route path="/create" element={<Create/>} />
         
         

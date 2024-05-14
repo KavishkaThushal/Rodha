@@ -26,6 +26,29 @@ export const Districts = [
     "Vavuniya"
   ];
   
+   export const Types=[
+    "Car",
+    "Van",
+    "SUV",
+    "Double Cab",
+    "Bus",
+    "Heavy Duty",
+    "Motorcycle",
+    "Three Wheeler",
+    "Lorry"
+
+   ]
+
+   export const Price=[
+    "<10000000",
+    ">10000000",
+    "<5000000",
+    ">5000000",
+    "<1000000",
+    "<100000",
+    ">1000000"
+   ]
+
   export const Brands = [
     // Cars (including Indian brands)
     "Toyota",

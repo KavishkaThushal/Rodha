@@ -6,33 +6,36 @@ import Trust from '../../assets/images/trust.png'
 import Quality from '../../assets/images/quality.png'
 import Finance from '../../assets/images/fianance.png'
 import {motion} from 'framer-motion'
+import { Brands, Districts, Price, Types } from '../../assets/utils/data'
+import { useNavigate } from 'react-router-dom'
 function Home() {
-  const [selectedBrand, setSelectedBrand] = useState('');
-  const [selectedType, setSelectedType] = useState('');
-  const [selectedPrice, setSelectedPrice] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedCondition, setSelectedCondition] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
+  const navigate=useNavigate()
+  const [formdata,setFormData]=useState({})
+console.log(formdata);
 
-  // Function to handle changes in the dropdown selection
-  const handleSelectChange = (event) => {
-    setSelectedBrand(event.target.value);
-  };
-  const handleSelectChangeType = (event) => {
-    setSelectedType(event.target.value);
-  };
-  const handleSelectChangeCity = (event) => {
-    setSelectedCity(event.target.value);
-  };
-  const handleSelectChangePrice = (event) => {
-    setSelectedPrice(event.target.value);
-  };
-  const handleSelectChangeCondition = (event) => {
-    setSelectedCondition(event.target.value);
-  };
-  const handleSelectChangeModel = (event) => {
-    setSelectedModel(event.target.value);
-  };
+
+
+  const handleSubmitData=(e)=>{
+
+    setFormData({
+         ...formdata,
+         [e.target.id]:e.target.value
+    })
+  }     
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+        const urlParams=new URLSearchParams()
+        urlParams.set('Brand',formdata.Brand)
+        urlParams.set('Model',formdata.Model)
+        urlParams.set('Type',formdata.Type)
+        urlParams.set('Price',formdata.Price)
+        urlParams.set('City',formdata.City)
+        urlParams.set('Condition',formdata.Condition)
+        const searchQuery=urlParams.toString()
+
+        navigate(`/search?${searchQuery}`)
+  }
   return (
     <>
     <Hero/>
@@ -51,56 +54,50 @@ function Home() {
             
          </div>
 
-          <div className='flex flex-col w-full p-5 sm:p-0 sm:w-[80%]  items-center gap-4 sm:gap-8 mt-1 sm:mt-5'>
+          <form  onSubmit={handleSubmit} className='flex flex-col w-full p-5 sm:p-0 sm:w-[80%]  items-center gap-4 sm:gap-8 mt-1 sm:mt-5'>
 
           <div className='flex flex-row w-full justify-between '> 
-          <select id="dropdown" value={selectedBrand} onChange={handleSelectChange} className='flex text-center  py-3 w-32  sm:w-64 h-12 font-semibold focus:outline-none text-slate-400'>
-        <option value="" disabled hidden className='px-10 font-bold'>Brand</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+          <select id="Brand"  onChange={handleSubmitData} className='flex text-center  py-3 w-32  sm:w-64 h-12 font-semibold focus:outline-none text-slate-400'>
+        <option value=""  className='px-10 font-bold'>Brand</option>
+        {
+                    Brands.map((brand,index)=>(<option key={index}  value={brand}>{brand}</option>))
+                }
       </select>
             
             <div className='flex flex-col gap-2 '>
-           <input type="text" value={selectedModel} placeholder='Model' onChange={handleSelectChangeModel} className='flex px-2 py-3 w-32 sm:w-64 h-12  font-semibold text-center focus:outline-none'/>
+           <input type="text" id='Model' placeholder='Model' onChange={handleSubmitData} className='flex px-2 py-3 w-32 sm:w-64 h-12  font-semibold text-center focus:outline-none'/>
            <span className='flex  font-semibold text-xs justify-center '>Ex: Corolla</span>
            </div>
 
-           <select id="dropdown" value={selectedType} onChange={handleSelectChangeType} className='flex text-center  py-3 w-32 sm:w-64 h-12  font-semibold focus:outline-none text-slate-400'>
-        <option value="" disabled hidden>Type</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+           <select id="Type" onChange={handleSubmitData} className='flex text-center  py-3 w-32 sm:w-64 h-12  font-semibold focus:outline-none text-slate-400'>
+        <option value="" >Type</option>
+        {
+                    Types.map((type,index)=>(<option key={index}  value={type}>{type}</option>))
+                }
       </select>
           </div>
 
-          <div className='flex flex-row w-full justify-between '>
-          <select id="dropdown" value={selectedPrice} onChange={handleSelectChangePrice} className='flex text-center  py-3 w-64 h-12  font-semibold focus:outline-none text-slate-400'>
-        <option value="" disabled hidden>Price</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </select>
+          <div className='flex flex-row w-full justify-between sm:px-36 '>
+          
 
-      <select id="dropdown" value={selectedCity} onChange={handleSelectChangeCity} className='flex text-center  py-3 w-64 h-12  font-semibold focus:outline-none text-slate-400'>
-        <option value="" disabled hidden>City</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+      <select id="City" onChange={handleSubmitData} className='flex text-center  py-3 w-64 h-12  font-semibold focus:outline-none text-slate-400'>
+        <option value="" >City</option>
+        {
+                    Districts.map((town,index)=>(<option key={index}  value={town}>{town}</option>))
+                }
       </select>
 
            
 
-           <select id="dropdown" value={selectedCondition} onChange={handleSelectChangeCondition} className='flex text-center  py-3 w-64 h-12  font-semibold focus:outline-none text-slate-400'>
-        <option value="" disabled hidden>Condition</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+           <select id="Condition" onChange={handleSubmitData} className='flex text-center  py-3 w-64 h-12  font-semibold focus:outline-none text-slate-400'>
+        <option value="" >Condition</option>
+        <option value="Brand New">Brand New</option>
+        <option value="Used">Used</option>
       </select>
           </div>
            
-           <button className='flex items-center justify-center font-semibold bg-blue-500 text-white py-3 px-5 w-52 hover:bg-blue-700 '>Search</button>
-          </div>
+           <button type='submit' className='flex items-center justify-center font-semibold bg-blue-500 text-white py-3 px-5 w-52 hover:bg-blue-700 '>Search</button>
+          </form>
 
     </motion.div>
     </div>

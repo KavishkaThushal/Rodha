@@ -2,7 +2,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import React, { useState } from 'react'
 import { app } from '../../firebase/firebase'
 import { toast } from 'react-toastify'
-import { Brands, Districts } from '../../assets/utils/data'
+import { Brands, Districts, Types } from '../../assets/utils/data'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -201,15 +201,9 @@ function Create() {
                  <label  className='font-medium text-xs'>Type</label>    
                 <select id="Type"  onChange={handleSubmitData} className='flex text-center rounded-md py-2   h-10 w-32  sm:w-40 font-semibold  focus:outline-none text-blue-500 hover:scale-105 transition-all'>
                 <option value=""  className='px-10 font-bold'>Type</option>
-                <option value="Van">Van</option>
-                <option value="Motorcycle">Motorcycle</option>
-                <option value="ThreeWheeler">ThreeWheeler</option>
-                <option value="Car">Car</option>
-                <option value="Lorry">Lorry</option>
-                <option value="Bus">Bus</option>
-                <option value="SUV">SUV</option>
-                <option value="Heavy Duty">Heavy Duty</option>
-                <option value="Double Cab">Double Cab</option>
+                {
+                    Types.map((type,index)=>(<option key={index}  value={type}>{type}</option>))
+                }
                 </select>
                 </span>
 
