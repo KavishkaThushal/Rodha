@@ -3,38 +3,11 @@ import HeroImg from '../../assets/images/bmw.png'
 import CountUp from 'react-countup'
 import { motion } from 'framer-motion'
 
-{/* <motion.span
-        animate={{ opacity: 1, y: 0, rotate: 0 }}
-        initial={{ opacity: 0, y: -10, rotate: -10 }}
-        exit={{ opacity: 0 }}
-        transition={{
-          delay: index * .1,
-          duration: .1,
-          ease: "easeIn"
-        }}
-      ></motion.span> */}
+
 
 function Hero() {
 
-  // const renderTextAnimation = (text) => {
-  //   return text.split('').map((char, index) => {
-  //     return (
-  //       <motion.span
-  //         key={char + "-" + index}
-  //         animate={{ opacity: 1, y: 0, rotate: 0 }}
-  //         initial={{ opacity: 0, y: -10, rotate: -10 }}
-  //         exit={{ opacity: 0 }}
-  //         transition={{
-  //           delay: index * .1,
-  //           duration: 1,
-  //           ease: "easeIn"
-  //         }}
-  //       >
-  //         {char}
-  //       </motion.span>
-  //     )
-  //   })
-  // }
+
 
   return (
     <div className='flex h-[50vh]  sm:h-[80vh] w-[40vh]  mx-auto sm:mx-0 ' >
@@ -88,7 +61,7 @@ function Hero() {
                   duration:3,
                   type:"spring"
                 }}
-        src={HeroImg} alt='Hero' className='w-[30vh] sm:w-[100vh] h-[20hv] sm:h-[80vh] object-cover absolute  bottom-[48vh] sm:bottom-0 sm:top-10 right-2 sm:right-20'/> 
+        src={HeroImg} alt='Hero' className='w-[30vh]  sm:w-[100vh] h-[20hv] sm:h-[80vh] object-cover absolute  bottom-[48vh] sm:bottom-0 sm:top-10 right-2 sm:right-20'/> 
       
         
     </div>

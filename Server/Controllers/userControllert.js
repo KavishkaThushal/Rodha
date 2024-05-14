@@ -23,7 +23,7 @@ export const updateUser=async(req,res)=>{
             return res.status(200).json({message:"User updated successfully.",success:true,data:data})
                 
         } catch (error) {
-         console.log(error)
+         
             return res.status(500).json({message:"Internal Server Error."})
         }
    

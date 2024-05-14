@@ -20,7 +20,7 @@ function Vehicles() {
       fetchData()
 
    },[])
-   console.log(data);
+  
   return (
     <>
     <div className='flex flex-col w-full  items-center '>
@@ -29,7 +29,7 @@ function Vehicles() {
       <h1 className='absolute top-40 right-[54vh] z-50 text-4xl font-semibold'>SRI LANKAN BIGGEST VEHICLE MARKET</h1>
       </div>
     
-    <div className='grid grid-cols-3 gap-4 my-10 mx-10  '>
+    <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 my-10 mx-10  '>
       {
        
         data && data.map((card,i)=>(<Card key={i} data={card}/>))

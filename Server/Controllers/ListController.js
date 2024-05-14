@@ -9,7 +9,7 @@ export const listController=async(req,res)=>{
         return res.status(200).json({message:"New list added successfully.",success:true,data:newList})
         
     } catch (error) {
-        console.log(error)
+       
         return res.status(500).json({message:"Internal Server Error."})
     }
 }
@@ -22,7 +22,7 @@ export const showListController=async(req,res)=>{
         return res.status(200).json({message:"List fetched successfully.",success:true,data:list})
         
     } catch (error) {
-        console.log(error)
+        
         return res.status(500).json({message:"Internal Server Error."})
     }
 }
@@ -32,7 +32,7 @@ export const removeListController=async(req,res)=>{
         
         return res.status(200).json({message:"List removed successfully.",success:true,data:removeList})
      } catch (error) {
-        console.log(error)
+       
         return res.status(500).json({message:"Internal Server Error."})
      }
 }

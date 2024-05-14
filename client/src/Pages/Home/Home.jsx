@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
   const navigate=useNavigate()
   const [formdata,setFormData]=useState({})
-console.log(formdata);
+
 
 
 
@@ -48,7 +48,7 @@ console.log(formdata);
         duration:2,
         type:"spring"
       }}
-    className='flex flex-col z-50 w-[80%] mx-auto bg-blue-200 bg-opacity-80  shadow-2xl h-[50vh] my-20 items-center'>
+    className='flex flex-col z-50 w-full sm:w-[80%] mx-auto bg-blue-200 bg-opacity-80  shadow-2xl h-[50vh] my-20 items-center'>
          <div>
             <h1 className='flex text-lg sm:text-2xl font-bold mt-5'>Find The Best Vehicle For You</h1>
             

@@ -5,7 +5,7 @@ export const VerifyToken=(req,res,next)=>{
      
     
        
-       console.log(token)
+       
        if(!token)return res.send({success:false,message:"Unauthorized."})
 
          jwt.verify(token,process.env.SECRETKEY,(err,user)=>{

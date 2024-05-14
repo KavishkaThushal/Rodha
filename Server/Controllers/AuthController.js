@@ -47,7 +47,7 @@ export const Signin=async (req,res)=>{
       
       
     } catch (error) {
-      console.log(error)
+      
       return res.send({success:false,message:"Server Error."})
     }
   }
@@ -81,7 +81,7 @@ export const GoogleAuth=async (req,res)=>{
           
         }
        }catch (error) {
-      console.log(error)
+      
       return res.send({success:false,message:"Server Error."})
     }
   }
