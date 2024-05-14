@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -8,11 +8,32 @@ import BMW2 from '../../assets/images/bmw2.jpeg'
 import BMW3 from '../../assets/images/bmw3.jpeg'
 import BMW4 from '../../assets/images/bmw4.jpeg'
 import BMW5 from '../../assets/images/bmw5.jpeg'
-
-const data = [BMW1, BMW2, BMW3, BMW4, BMW5]
+import {useLocation} from 'react-router-dom'
+import axios from 'axios' 
+const dataa = [BMW1, BMW2, BMW3, BMW4, BMW5]
 
 function Details() {
-      
+    const { pathname } = useLocation();
+ 
+    const id = pathname.split("/").slice(-1)[0];
+    const [data,setData]=useState(null)
+    console.log(data)
+
+    useEffect(()=>{
+         const fetchData=async()=>{
+            try {
+                const response=await axios.get(`http://localhost:8000/api/list//listdetails/${id}`)
+                if(response.data.success===true){
+                    setData(response.data.data)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+         }
+         fetchData()
+
+    },[])
+
     const slidersettings = {
         slidesPerView : 1,
         spaceBetween : 5,
@@ -38,7 +59,7 @@ function Details() {
         <div className='flex w-full p-5 sm:p-0 sm:w-[40%]'>
         <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
                 <SliderButtons/>
-                    {data.map((card, i) => {
+                    {data && data.imageUrls.map((card, i) => {
                        return(<SwiperSlide key={i}>
                         <img key={i} src={card} alt='car' className=' flex justify-center items-center rounded-md w-[60vh] sm:w-[80vh] sm:h-[50vh] object-cover' />
                      </SwiperSlide>) 
@@ -54,55 +75,55 @@ function Details() {
           type:"spring"
         }}
         className='flex flex-col sm:w-[60%] w-full  py-10 bg-blue-200 mb-10 rounded-md max-h-[80vh] sm:max-h-[300vh]'>
-            <div className='text-center text-xl sm:text-2xl font-semibold mb-5'>BMW GTR r54</div>
+            <div className='text-center text-xl sm:text-2xl font-semibold mb-5'>{data && data.Brand+" "+ data.Model}</div>
             <div className='flex flex-col gap-4 sm:w-[80%] p-5 sm:p-0 mx-auto'>
             <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Contact</span>
                     <span>:</span>
-                    <span className='font-normal'>0712344567</span>
+                    <span className='font-normal'>{data && data.Contact}</span>
                     
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20  '>Brand</span>
                     <span>:</span>
-                    <span className='font-normal'>Nissan</span>
+                    <span className='font-normal'>{data && data.Brand}</span>
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>YOM</span>
                     <span>:</span>
-                    <span className='font-normal'>2015</span>
+                    <span className='font-normal'>{data && data.Year}</span>
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Gear</span>
                     <span>:</span>
-                    <span className='font-normal'>Manual</span>
+                    <span className='font-normal'>{data && data.Gear}</span>
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Price</span>
                     <span>:</span>
-                    <span className='font-normal'>Rs.22000000</span>
+                    <span className='font-normal'>Rs.{data && data.Price}</span>
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Model</span>
                     <span>:</span>
-                    <span className='font-normal'>Gtr 35</span>
+                    <span className='font-normal'>{data && data.Model}</span>
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Milleage</span>
                     <span>:</span>
-                    <span className='font-normal'>12000km</span>
+                    <span className='font-normal'>{data && data.Millage}km</span>
                 </span>
 
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Fuel Type</span>
                     <span>:</span>
-                    <span className='font-normal'>Petrol</span>
+                    <span className='font-normal'>{data && data.FuelType}</span>
                 </span>
                  
 
@@ -111,7 +132,7 @@ function Details() {
                  <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Options</span>
                     <span>:</span>
-                    <span className='font-normal'>AIR CONDITION, POWER STEERING, POWER MIRROR, POWER WINDOW</span>
+                    <span className='font-normal'>{data && data.Features.toUpperCase()}</span>
                 </span>
 
                 
@@ -121,7 +142,7 @@ function Details() {
                 <span className='flex flex-row gap-1 text-xs sm:text-sm font-normal sm:font-semibold'>
                     <span className='w-20 '>Details</span>
                     <span>:</span>
-                    <span className='sm:w-[80vh] w-[30vh] text-justify font-normal'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, consequatur. Nulla ea illum, eum harum corporis laboriosam culpa facere voluptatum, excepturi deserunt assumenda dicta a!</span>
+                    <span className='sm:w-[80vh] w-[30vh] text-justify font-normal'>{data && data.Description}</span>
                 </span>
             </div>
         </motion.div>

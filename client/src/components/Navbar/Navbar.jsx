@@ -53,6 +53,7 @@ function Navbar() {
             <div className='hidden sm:visible sm:flex   sm:items-center sm:gap-4'>
             <Link to='/' className=' font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Home</Link>
                 <Link to='/about' className='font-semibold text-base sm:text-lg text-black hover:text-blue-500'>About</Link> 
+                <Link to='/vehicles' className='font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Vehicles</Link> 
                 
                 {user? 
                     <Link to='/profile'  className='flex justify-center items-center'>

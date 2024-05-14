@@ -6,13 +6,14 @@ import SignIn from './Pages/SignIn/SignIn'
 import SignUp from './Pages/SignUp/SignUp'
 import About from './Pages/About/About'
 import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
+
 import Footer from './components/Footer/Footer'
 import Create from './Pages/Create/Create'
-import Listing from './Pages/Listing/Listing'
+
 import Details from './Pages/Details/Details'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Vehicles from './Pages/Vehicles/Vehicles'
 
 function App() {
   return (
@@ -26,9 +27,11 @@ function App() {
         <Route path="/signin" element={<SignIn/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/about" element={<About/>} />
+        <Route path="/vehicles" element={<Vehicles/>} />
+        <Route path="/vehicles/:id" element={<Details/>} />
         <Route path="/create" element={<Create/>} />
-        <Route path="/list" element={<Listing/>} />
-        <Route path="/details" element={<Details/>} />
+        
+        
      </Routes>
      <Footer/>
     </BrowserRouter>

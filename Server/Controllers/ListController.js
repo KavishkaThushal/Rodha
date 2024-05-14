@@ -36,3 +36,20 @@ export const removeListController=async(req,res)=>{
         return res.status(500).json({message:"Internal Server Error."})
      }
 }
+
+export const showAll=async(req,res)=>{
+    try {
+        const allLists=await List.find()
+        return res.status(200).json({message:"Lists fetch successfully.",success:true,data:allLists})
+    } catch (error) {
+        return res.status(500).json({message:"Internal Server Error."})
+    }
+}
+export const showDetails=async(req,res)=>{
+    try {
+        const itemDetails=await List.findById(req.params.id)
+        return res.status(200).json({message:"List fetch successfully.",success:true,data:itemDetails})
+    } catch (error) {
+        return res.status(500).json({message:"Internal Server Error."})
+    }
+}
