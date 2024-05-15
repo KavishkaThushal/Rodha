@@ -19,8 +19,9 @@ function Navbar() {
             urlParams.set('Brand',submitData)
            
             const searchQuery=urlParams.toString()
-    
+             setSubmitData('')
             navigate(`/search?${searchQuery}`)
+
       }
     
   return (
@@ -57,8 +58,8 @@ function Navbar() {
                 
             </motion.div>}
             <form onSubmit={handleSubmit} className=' hidden sm:visible border-2 border-blue-500 sm:p-2 sm:rounded-lg sm:flex sm:items-center '>
-                <input type='text' onChange={(e)=>(setSubmitData(e.target.value))} placeholder='Search' className=' bg-transparent focus:outline-none px-1 text-sm font-medium  w-full sm:w-64 '/>
-                <button  type='submit'><FaSearch className='text-blue-500  hover:text-blue-700'/></button>
+                <input type='text' value={submitData} onChange={(e)=>(setSubmitData(e.target.value))} placeholder='Search' className=' bg-transparent focus:outline-none px-1 text-sm font-medium  w-full sm:w-64 '/>
+                <button  type='submit'><FaSearch className='text-blue-500 focus:outline-none hover:text-blue-700'/></button>
             </form>
             <div className='hidden sm:visible sm:flex   sm:items-center sm:gap-4'>
             <Link to='/' className=' font-semibold text-base sm:text-lg text-black hover:text-blue-500'>Home</Link>
