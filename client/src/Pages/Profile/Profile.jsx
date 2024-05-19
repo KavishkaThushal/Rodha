@@ -105,7 +105,7 @@ function Profile() {
           }else{
             dispatch(deleteSuccess())
             localStorage.clear()
-            toast.success("Account deleted successfully", { position: "bottom-right" });
+            toast.success("Account deleted successfully", { position: "top-right" });
             navigate('/')
           }
        } catch (error) {
@@ -124,7 +124,7 @@ function Profile() {
           }else{
             dispatch(signOutSuccess())
             localStorage.clear()
-            toast.success("Sign out successful.", { position: "bottom-right" });
+            toast.success("Sign out successful.", { position: "top-right" });
             navigate('/')
           }
        } catch (error) {

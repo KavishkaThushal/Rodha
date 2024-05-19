@@ -35,7 +35,7 @@ function SignIn() {
                 }else{
                    dispatch(signInSuccess(response.data.data))
                    localStorage.setItem('access_token',response.data.token)
-                   toast.success("Register successfully", { position: "bottom-right" });
+                   toast.success("Register successfully", { position: "top-right" });
                    navigate('/')
                 }
     
